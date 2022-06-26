@@ -55,9 +55,14 @@ int main(int argc, const char **argv)
     g.play(p1, {2, 0});
     g.play(p2, {1, 0});
     g.play(p1, {1, 2});
-    g.play(p2, {1, 0});
-    g.play(p1, {2, 1});
+    g.play(p2, {2, 1});
+    g.play(p1, {2, 2});
+
     g.play(p2, {2, 2});
+
+    g.play(p2, {2, 3});
+    g.play(p2, {3, 2});
+    g.play(p2, {3, 3});
 
     g.print_board();
 

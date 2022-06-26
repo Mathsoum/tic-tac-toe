@@ -1,6 +1,9 @@
 #include "model.h"
 
-#include <iostream>
+std::ostream& operator<<(std::ostream& in, const Coord& c) {
+    in << "{" << c.line << "," << c.column << "}";
+    return in;
+}
 
 Game::Game() {
     auto line_nb = 0U;
@@ -39,5 +42,18 @@ void Game::print_board() const {
 }
 
 void Game::play(const Player& p, const Coord& c) {
+    if (c.line >= _board.size()) {
+        std::cerr << "Invalid coordinates. Line " << c.line << " is out of bounds!" << std::endl;
+        return;
+    }
+    if (c.column >= _board.at(0).size()) {
+        std::cerr << "Invalid coordinates. Column " << c.column << " is out of bounds!" << std::endl;
+        return;
+    }
+
+    if (_board.at(c.line).at(c.column).content != Figure::EMPTY) {
+        std::cerr << "Square at " << c << " is already filled!" << std::endl;
+        return;
+    }
     _board.at(c.line).at(c.column).content = p.figure;
 }

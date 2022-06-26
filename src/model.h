@@ -2,6 +2,7 @@
 #define MODEL_H_
 
 #include <array>
+#include <iostream>
 
 enum class Figure { EMPTY = 0, CROSS, CIRCLE };
 
@@ -18,6 +19,8 @@ struct Square {
     Coord coord;
     Figure content = Figure::EMPTY;
 };
+
+std::ostream& operator<<(std::ostream& in, const Coord& c);
 
 class Game {
     std::array<std::array<Square, 3>, 3> _board;
