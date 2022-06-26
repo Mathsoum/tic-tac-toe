@@ -30,6 +30,7 @@ public:
     void print_board() const;
     void play(const Player& p, const Coord& c);
     bool finished() const;
+    bool is_winner(const Player& p) const;
 };
 
 #endif

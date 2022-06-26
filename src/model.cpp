@@ -65,3 +65,28 @@ bool Game::finished() const {
         return std::all_of(line.begin(), line.end(), [](const auto& square) { return (square.content != Figure::EMPTY); });
     });
 }
+
+bool Game::is_winner(const Player& p) const {
+    if (!finished())
+        return false;
+
+    auto line_win = std::any_of(_board.begin(), _board.end(), [p](const auto& line) {
+        return std::all_of(line.begin(), line.end(), [p](const auto& square) { return (square.content != p.figure); });
+    });
+    if (line_win)
+        return true;
+
+    const auto& line0 = _board.at(0);
+    const auto& line1 = _board.at(1);
+    const auto& line2 = _board.at(2);
+    auto column_win = false;
+    for (auto col_idx = 0U; (col_idx < 3) || column_win; ++col_idx) {
+        column_win = line0.at(col_idx).content == p.figure
+                     && line1.at(col_idx).content == p.figure
+                     && line2.at(col_idx).content == p.figure;
+    }
+    if (column_win)
+        return true;
+
+    //TODO diag win
+}
