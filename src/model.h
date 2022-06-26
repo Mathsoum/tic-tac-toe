@@ -29,6 +29,7 @@ public:
     explicit Game();
     void print_board() const;
     void play(const Player& p, const Coord& c);
+    bool finished() const;
 };
 
 #endif

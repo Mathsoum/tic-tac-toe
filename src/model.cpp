@@ -1,5 +1,7 @@
 #include "model.h"
 
+#include <algorithm>
+
 std::ostream& operator<<(std::ostream& in, const Coord& c) {
     in << "{" << c.line << "," << c.column << "}";
     return in;
@@ -56,4 +58,10 @@ void Game::play(const Player& p, const Coord& c) {
         return;
     }
     _board.at(c.line).at(c.column).content = p.figure;
+}
+
+bool Game::finished() const {
+    return std::all_of(_board.begin(), _board.end(), [](const auto& line) {
+        return std::all_of(line.begin(), line.end(), [](const auto& square) { return (square.content != Figure::EMPTY); });
+    });
 }

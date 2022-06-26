@@ -49,14 +49,23 @@ int main(int argc, const char **argv)
     p2.figure = Figure::CIRCLE;
 
     g.play(p1, {0, 0});
+    assert(!g.finished());
     g.play(p2, {1, 1});
+    assert(!g.finished());
     g.play(p1, {0, 1});
+    assert(!g.finished());
     g.play(p2, {0, 2});
+    assert(!g.finished());
     g.play(p1, {2, 0});
+    assert(!g.finished());
     g.play(p2, {1, 0});
+    assert(!g.finished());
     g.play(p1, {1, 2});
+    assert(!g.finished());
     g.play(p2, {2, 1});
+    assert(!g.finished());
     g.play(p1, {2, 2});
+    assert(g.finished());
 
     g.play(p2, {2, 2});
 
